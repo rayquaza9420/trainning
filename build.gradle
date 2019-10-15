@@ -1,0 +1,41 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.trainning'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url "http://dl.bintray.com/dai0304/spar-wings" } // for spar-wings
+	maven { url "http://classmethod-metropolis-repo.s3-website-ap-northeast-1.amazonaws.com/release" }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtime('com.h2database:h2')
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile "jp.xet.spar-wings:spar-wings-httpexceptions:0.38"
+	testCompile ('junit:junit:4.12')
+	testCompile ('org.mockito:mockito-core:2.+')
+	testCompile "org.mockito:mockito-junit-jupiter"
+	testCompile "org.junit.jupiter:junit-jupiter:5.5.1"
+}
+
