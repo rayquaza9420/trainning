@@ -5,12 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.trainning.api.model.city.City;
 import com.trainning.api.model.oldpost.OldPost;
 import com.trainning.api.model.post.Post;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -22,16 +20,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 /**
  * Area model
  */
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tbl_area")
 public class Area {
+    /**
+     * Area ID.
+     */
     @Getter
     @Setter
     @Id
@@ -40,42 +40,59 @@ public class Area {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int areaId;
 
+    /**
+     * Area name kana.
+     */
     @Getter
     @Setter
     @Column(name = "area_kana", columnDefinition = "LONGTEXT")
-    @JsonProperty("area_kana")
     private String areaKana;
 
+    /**
+     * Area name.
+     */
     @Getter
     @Setter
     @Column(name = "area", columnDefinition = "LONGTEXT")
-    @JsonProperty("areaName")
     private String areaName;
 
+    /**
+     * City ID.
+     */
     @Getter
     @Setter
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
 
+    /**
+     * Chome area.
+     */
     @Getter
     @Setter
     @Column(name = "chome_area")
     @JsonProperty("chome_area")
     private int chomeArea;
 
+    /**
+     * Koaza area.
+     */
     @Getter
     @Setter
     @Column(name = "koaza_area")
-    @JsonProperty("koaza_area")
     private int koazaArea;
 
+    /**
+     * Multi post area.
+     */
     @Getter
     @Setter
     @Column(name = "multi_post_area")
-    @JsonProperty("multi_post_area")
     private int multiPostArea;
 
+    /**
+     * Post ID.
+     */
     @Getter
     @Setter
     @ManyToOne
@@ -83,6 +100,9 @@ public class Area {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Post post;
 
+    /**
+     * Old post ID.
+     */
     @Getter
     @Setter
     @ManyToOne

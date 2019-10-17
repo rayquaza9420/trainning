@@ -24,6 +24,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Test for {@link AddressController}
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(AddressController.class)
 public class AddressControllerTest {
@@ -34,6 +37,10 @@ public class AddressControllerTest {
     @MockBean
     AddressService addressService;
 
+    /**
+     * Test GET "/post_offices/post/{postcode}"
+     * @throws Exception exception
+     */
     @Test
     public void SearchByPostCode() throws Exception {
         // setup
@@ -50,6 +57,9 @@ public class AddressControllerTest {
                 .andExpect(jsonPath("@.data[0].code").value(is(area.getCityCode())));
     }
 
+    /**
+     * Test GET "/post_offices/post/{postcode}" @throws HttpNotFoundException
+     */
     @Test
     public void SearchByPostCodeThrowsHNFE() throws Exception {
         // setup
@@ -60,6 +70,9 @@ public class AddressControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Test GET "/post_offices/post/{postcode}" @throws IllegalArgumentException
+     */
     @Test
     public void SearchByPostCodeThrowsHBRE() throws Exception {
         // setup
@@ -70,6 +83,10 @@ public class AddressControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    /**
+     * Test GET "/post_offices/prefectures/{prefectureCode}"
+     * @throws Exception
+     */
     @Test
     public void SearchByPrefectureCode() throws Exception {
         // setup
@@ -80,9 +97,16 @@ public class AddressControllerTest {
         // exercise
         mvc.perform(get("/post_offices/prefectures/{prefectureCode}", city.getPrefectureCode()))
                 // verify
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("@.data[0].code").value(is(city.getCityCode())))
+                .andExpect(jsonPath("@.data[0].prefecture_code").value(is(city.getPrefectureCode())))
+                .andExpect(jsonPath("@.data[0].prefecture").value(is(city.getPrefectureName())))
+                .andExpect(jsonPath("@.data[0].prefecture_kana").value(is(city.getPrefectureKana())));
     }
 
+    /**
+     * Test GET "/post_offices/prefectures/{prefectureCode}" @throws HttpNotFoundException
+     */
     @Test
     public void SearchByPrefectureCodeThrowsHNFE() throws Exception {
         // setup
@@ -93,6 +117,9 @@ public class AddressControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Test GET "/post_offices/prefectures/{prefectureCode}" @throws IllegalArgumentException
+     */
     @Test
     public void SearchByPrefectureCodeThrowsHBRE() throws Exception {
         // setup

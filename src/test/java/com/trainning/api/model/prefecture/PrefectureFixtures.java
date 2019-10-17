@@ -1,6 +1,13 @@
 package com.trainning.api.model.prefecture;
 
+/**
+ * Create prefecture test data
+ */
 public class PrefectureFixtures {
+    /**
+     * Create prefecture test data
+     * @return prefecture
+     */
     public static Prefecture createPrefecture(){
         Prefecture prefecture = new Prefecture();
         prefecture.setPrefectureName("秋田県");

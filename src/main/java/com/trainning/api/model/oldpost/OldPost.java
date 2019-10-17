@@ -1,13 +1,10 @@
 package com.trainning.api.model.oldpost;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,15 +14,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Old post mode
+ * Old post model
  */
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tbl_old_post")
 public class OldPost {
+    /**
+     * Old post ID.
+     */
     @Getter
     @Setter
     @Id
@@ -34,10 +32,12 @@ public class OldPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int oldPostId;
 
+    /**
+     * Old post code.
+     */
     @Getter
     @Setter
     @Column(name = "old_post_code")
-    @JsonProperty("old_post_code")
     private String oldPostCode;
 
     /**

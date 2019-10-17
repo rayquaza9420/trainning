@@ -13,25 +13,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Service for {@link AddressPostCode} and {@link AddressPrefectureCode}
+ * Address service
  */
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class AddressService {
 
-    private final AreaRepository areaRepo;
+    private final AreaRepository areaRepository;
 
-    private final CityRepository cityRepo;
+    private final CityRepository cityRepository;
 
     /**
-     * Find list address by post code
+     * Find list area by post code
      * @param postCode code of post at address
      * @return found of list address (to area)
      */
     public List<AddressPostCode> findByPostCode(String postCode) {
-        postCode = validateCode(postCode);
-        List<Area> areas = areaRepo.findByPostPostCode(postCode);
+        AddressUtils.checkNullCode(postCode);
+        postCode = AddressUtils.convertCode(postCode);
+        AddressUtils.checkNumber(postCode);
+        List<Area> areas = areaRepository.findByPostPostCode(postCode);
         if(areas.isEmpty()){
             throw new HttpNotFoundException("Post code not found.");
         }
@@ -39,32 +41,18 @@ public class AddressService {
     }
 
     /**
-     * Find list address by prefecture code
+     * Find list city by prefecture code
      * @param prefectureCode the code of prefecture
      * @return all city of prefecture
      */
     public List<AddressPrefectureCode> findByPrefectureCode(String prefectureCode)  {
-        prefectureCode = validateCode(prefectureCode);
-        List<City> cities = cityRepo.findByPrefecturePrefectureCode(prefectureCode);
+        AddressUtils.checkNullCode(prefectureCode);
+        prefectureCode = AddressUtils.convertCode(prefectureCode);
+        AddressUtils.checkNumber(prefectureCode);
+        List<City> cities = cityRepository.findByPrefecturePrefectureCode(prefectureCode);
         if(cities.isEmpty()){
             throw new HttpNotFoundException("Prefecture code not found.");
         }
         return cities.stream().map(AddressPrefectureCode::new).collect(Collectors.toList());
-    }
-
-    /**
-     * check null and half size code
-     * @param code postCode or prefectueCode
-     * @return code
-     */
-    private String validateCode(String code){
-        if(code == null || code.isEmpty()) {
-            throw new NullPointerException("Code must be not null.");
-        }
-        code = code.replaceAll(" ", "").replaceAll("-", "");
-        if(!code.matches("\\d+")) {
-            throw new IllegalArgumentException("Code must be half size number.");
-        }
-        return code;
     }
 }

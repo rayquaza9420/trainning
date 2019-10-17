@@ -1,14 +1,11 @@
 package com.trainning.api.model.city;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.trainning.api.model.prefecture.Prefecture;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,13 +19,14 @@ import javax.persistence.JoinColumn;
 /**
  * City model
  */
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tbl_city")
 public class City {
+    /**
+     * City ID.
+     */
     @Getter
     @Setter
     @Id
@@ -37,24 +35,33 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cityId;
 
+    /**
+     * City code.
+     */
     @Getter
     @Setter
     @Column(name = "code")
-    @JsonProperty("code")
     private String cityCode;
 
+    /**
+     * City name kana.
+     */
     @Getter
     @Setter
     @Column(name = "city_kana")
-    @JsonProperty("city_kana")
     private String cityKana;
 
+    /**
+     * City name.
+     */
     @Getter
     @Setter
     @Column(name = "city")
-    @JsonProperty("city")
     private String cityName;
 
+    /**
+     * Prefecture ID.
+     */
     @Getter
     @Setter
     @ManyToOne

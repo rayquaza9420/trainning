@@ -1,6 +1,13 @@
 package com.trainning.api.model.address;
 
+/**
+ * Create address post code test data
+ */
 public class AddressPostCodeFixtures {
+    /**
+     * Create address post code
+     * @return addressPostCode
+     */
     public static AddressPostCode createAddressPostCode(){
         AddressPostCode addressPostCode = new AddressPostCode();
         addressPostCode.setAreaName("カツクイ沢山");

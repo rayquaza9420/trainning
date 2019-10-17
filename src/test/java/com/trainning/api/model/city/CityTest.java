@@ -13,6 +13,9 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Test for {@link City}
+ */
 public class CityTest {
     JacksonTester<City> json;
 

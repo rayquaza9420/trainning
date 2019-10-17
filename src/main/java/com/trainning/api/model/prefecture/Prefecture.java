@@ -1,13 +1,10 @@
 package com.trainning.api.model.prefecture;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,12 +16,14 @@ import javax.persistence.Table;
 /**
  * Prefecture model
  */
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name = "tbl_prefecture")
 public class Prefecture {
+    /**
+     * Prefecture ID.
+     */
     @Getter
     @Setter
     @Id
@@ -33,22 +32,28 @@ public class Prefecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int prefectureId;
 
+    /**
+     * Prefecture name kana.
+     */
     @Getter
     @Setter
     @Column(name = "prefecture_kana")
-    @JsonProperty("prefecture_kana")
     private String prefectureKana;
 
+    /**
+     * Prefecture name.
+     */
     @Getter
     @Setter
     @Column(name = "prefecture")
-    @JsonProperty("prefecture")
     private String prefectureName;
 
+    /**
+     * Prefecture code.
+     */
     @Getter
     @Setter
     @Column(name = "prefecture_code")
-    @JsonProperty("prefecture_code")
     private String prefectureCode;
 
     /**

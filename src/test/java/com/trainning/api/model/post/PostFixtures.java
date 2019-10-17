@@ -1,6 +1,12 @@
 package com.trainning.api.model.post;
 
+/**
+ * Create post test data
+ */
 public class PostFixtures {
+    /**
+     * Create post test data
+     */
     public static Post createPost(){
         Post post = new Post();
         post.setPostCode("0120833");

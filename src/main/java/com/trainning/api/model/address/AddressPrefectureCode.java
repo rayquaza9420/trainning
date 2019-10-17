@@ -11,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * address prefecture code model
+ * Address prefecture code model
  */
 @ToString
 @EqualsAndHashCode
@@ -20,21 +20,39 @@ import lombok.ToString;
 @Getter
 @Setter
 public class AddressPrefectureCode {
+    /**
+     * City code.
+     */
     @JsonProperty("code")
     private String cityCode;
 
+    /**
+     * City name.
+     */
     @JsonProperty("city")
     private String cityName;
 
+    /**
+     * City name kana.
+     */
     @JsonProperty("city_kana")
     private String cityKana;
 
+    /**
+     * Prefecture name.
+     */
     @JsonProperty("prefecture")
     private String prefectureName;
 
+    /**
+     * Prefecture name kana.
+     */
     @JsonProperty("prefecture_kana")
     private String prefectureKana;
 
+    /**
+     * Prefecture code.
+     */
     @JsonProperty("prefecture_code")
     private String prefectureCode;
 
@@ -43,7 +61,9 @@ public class AddressPrefectureCode {
      * @param city found of list city
      */
     public AddressPrefectureCode(City city) {
+        AddressUtils.checkAddressPrefectureCode(city);
         Prefecture prefecture = city.getPrefecture();
+        AddressUtils.checkAddressPrefectureCode(prefecture);
         this.cityCode = city.getCityCode();
         this.cityName = city.getCityName();
         this.cityKana = city.getCityKana();

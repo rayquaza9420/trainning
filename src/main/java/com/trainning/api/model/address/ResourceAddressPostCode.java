@@ -9,6 +9,9 @@ import lombok.ToString;
 
 import java.util.Collection;
 
+/**
+ * Resource address post code model
+ */
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -16,15 +19,14 @@ public class ResourceAddressPostCode {
     @Getter
     @Setter
     @JsonProperty("data")
-    private Collection<AddressPostCode> content;
-
+    private Collection<AddressPostCode> data;
 
     /**
      * Creates a {@link ResourceAddressPostCode} instance content collection.
      *
-     * @param content list data
+     * @param data list of {@link AddressPostCode}
      */
-    public ResourceAddressPostCode(Collection<AddressPostCode> content) {
-        this.content = content;
+    public ResourceAddressPostCode(Collection<AddressPostCode> data) {
+        this.data = data;
     }
 }

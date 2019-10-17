@@ -5,7 +5,14 @@ import com.trainning.api.model.oldpost.OldPost;
 import com.trainning.api.model.post.Post;
 import com.trainning.api.model.prefecture.Prefecture;
 
+/**
+ * Create area test data
+ */
 public class AreaFixtures {
+    /**
+     * Create area test data
+     * @return area
+     */
     public static Area createArea(){
         Prefecture prefecture = new Prefecture();
         prefecture.setPrefectureId(0);

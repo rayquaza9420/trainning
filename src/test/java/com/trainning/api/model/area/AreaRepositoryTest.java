@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * Test for {@link AreaRepository}
  */
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
@@ -29,7 +28,6 @@ public class AreaRepositoryTest {
 
     /**
      * Test find area
-     *
      */
     @Test
     public void testFindByPostPostCode() {

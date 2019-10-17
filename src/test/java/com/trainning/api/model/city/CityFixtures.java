@@ -2,7 +2,14 @@ package com.trainning.api.model.city;
 
 import com.trainning.api.model.prefecture.Prefecture;
 
+/**
+ * Create city test data
+ */
 public class CityFixtures {
+    /**
+     * Create city test data
+     * @return city
+     */
     public static City createCity(){
         Prefecture prefecture = new Prefecture();
         prefecture.setPrefectureCode("05");

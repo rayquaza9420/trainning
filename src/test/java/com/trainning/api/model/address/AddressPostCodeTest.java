@@ -16,6 +16,9 @@ import javax.validation.Validator;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
+/**
+ * Test for {@link AddressPostCode}
+ */
 public class AddressPostCodeTest {
     JacksonTester<AddressPostCode> json;
 

@@ -16,6 +16,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
+/**
+ * Test for {@link AddressPrefectureCode}
+ */
 public class AddressPrefectureCodeTest {
     JacksonTester<AddressPrefectureCode> json;
 
