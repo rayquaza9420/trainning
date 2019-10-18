@@ -1,8 +1,10 @@
 package com.trainning.api.model.address;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Preconditions;
 import com.trainning.api.model.city.City;
 import com.trainning.api.model.prefecture.Prefecture;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -61,9 +63,9 @@ public class AddressPrefectureCode {
      * @param city found of list city
      */
     public AddressPrefectureCode(City city) {
-        AddressUtils.checkAddressPrefectureCode(city);
+        Preconditions.checkNotNull(city,"Prefecture code not found.");
         Prefecture prefecture = city.getPrefecture();
-        AddressUtils.checkAddressPrefectureCode(prefecture);
+        Preconditions.checkNotNull(prefecture,"Prefecture code not found.");
         this.cityCode = city.getCityCode();
         this.cityName = city.getCityName();
         this.cityKana = city.getCityKana();

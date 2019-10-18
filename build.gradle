@@ -33,9 +33,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile "jp.xet.spar-wings:spar-wings-httpexceptions:0.38"
+	compile "com.google.guava:guava:23.6-jre"
+
+	// testing
 	testCompile ('junit:junit:4.12')
 	testCompile ('org.mockito:mockito-core:2.+')
 	testCompile "org.mockito:mockito-junit-jupiter"
 	testCompile "org.junit.jupiter:junit-jupiter:5.5.1"
+	testCompile "com.jayway.jsonpath:json-path-assert:2.4.0"
 }
 

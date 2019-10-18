@@ -2,6 +2,7 @@ package com.trainning.api.model.address;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.google.common.base.Preconditions;
 import com.trainning.api.model.area.Area;
 import com.trainning.api.model.city.City;
 import com.trainning.api.model.oldpost.OldPost;
@@ -117,15 +118,15 @@ public class AddressPostCode {
      * @param area found of area
      */
     public AddressPostCode(Area area) {
-        AddressUtils.checkAddressPostCode(area);
+        Preconditions.checkNotNull(area,"Post code not found.");
         City city = area.getCity();
-        AddressUtils.checkAddressPostCode(city);
+        Preconditions.checkNotNull(city,"Post code not found.");
         Prefecture prefecture = city.getPrefecture();
-        AddressUtils.checkAddressPostCode(prefecture);
+        Preconditions.checkNotNull(prefecture, "Post code not found.");
         Post post = area.getPost();
-        AddressUtils.checkAddressPostCode(post);
+        Preconditions.checkNotNull(post,"Post code not found.");
         OldPost oldPost = area.getOldPost();
-        AddressUtils.checkAddressPostCode(oldPost);
+        Preconditions.checkNotNull(oldPost,"Post code not found.");
         this.cityCode = city.getCityCode();
         this.cityName = city.getCityName();
         this.oldPostCode = oldPost.getOldPostCode();
