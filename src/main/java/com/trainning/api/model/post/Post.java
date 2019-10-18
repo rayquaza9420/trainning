@@ -1,6 +1,8 @@
 package com.trainning.api.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,8 +20,10 @@ import javax.persistence.Table;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tbl_post")
+@Builder(toBuilder = true)
 public class Post {
     /**
      * Post ID.

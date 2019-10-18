@@ -12,6 +12,7 @@ import com.trainning.api.model.area.AreaRepository;
 import com.trainning.api.model.city.City;
 import com.trainning.api.model.city.CityFixtures;
 import com.trainning.api.model.city.CityRepository;
+import com.trainning.api.model.city.CityRepositoryTest;
 import jp.xet.sparwings.spring.web.httpexceptions.HttpNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,16 +30,16 @@ import java.util.List;
 @ExtendWith(MockitoExtension.class)
 public class AddressServiceTest {
     @Mock
-    AreaRepository areaRepo;
+    AreaRepository areaRepository;
 
     @Mock
-    CityRepository cityRepo;
+    CityRepository cityRepository;
 
     AddressService sut;
 
     @BeforeEach
     public void setUp() {
-        sut = new AddressService(areaRepo,cityRepo);
+        sut = new AddressService(areaRepository,cityRepository);
     }
 
     /**
@@ -51,13 +52,13 @@ public class AddressServiceTest {
         List<Area> listArea = new ArrayList<>();
         listArea.add(area);
         AddressPostCode addressPostCode = AddressPostCodeFixtures.createAddressPostCode();
-        when(areaRepo.findByPostPostCode(area.getPost().getPostCode())).thenReturn(listArea);
+        when(areaRepository.findByPostPostCode(area.getPost().getPostCode())).thenReturn(listArea);
 
         // exercise
         List<AddressPostCode> actual = sut.findByPostCode(area.getPost().getPostCode());
 
         // verify
-        verify(areaRepo, times(1)).findByPostPostCode(area.getPost().getPostCode());
+        verify(areaRepository, times(1)).findByPostPostCode(area.getPost().getPostCode());
         assertThat(actual).isNotEmpty();
         assertThat(actual.get(0)).isEqualTo(addressPostCode);
     }
@@ -102,13 +103,13 @@ public class AddressServiceTest {
         List<City> listCity = new ArrayList<>();
         listCity.add(city);
         AddressPrefectureCode addressPrefectureCode = AddressPrefectureCodeFixtures.createAddressPrefectureCode();
-        when(cityRepo.findByPrefecturePrefectureCode(city.getPrefecture().getPrefectureCode())).thenReturn(listCity);
+        when(cityRepository.findByPrefecturePrefectureCode(city.getPrefecture().getPrefectureCode())).thenReturn(listCity);
 
         // exercise
         List<AddressPrefectureCode> actual = sut.findByPrefectureCode(city.getPrefecture().getPrefectureCode());
 
         // verify
-        verify(cityRepo, times(1)).findByPrefecturePrefectureCode(city.getPrefecture().getPrefectureCode());
+        verify(cityRepository, times(1)).findByPrefecturePrefectureCode(city.getPrefecture().getPrefectureCode());
         assertThat(actual).isNotEmpty();
         assertThat(actual.get(0)).isEqualTo(addressPrefectureCode);
     }

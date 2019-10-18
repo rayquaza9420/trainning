@@ -15,31 +15,31 @@ public class AreaFixtures {
      */
     public static Area createArea(){
         Prefecture prefecture = new Prefecture();
-        prefecture.setPrefectureId(0);
+        prefecture.setPrefectureId(01);
         prefecture.setPrefectureName("秋田県");
         prefecture.setPrefectureCode("05");
         prefecture.setPrefectureKana("ｱｷﾀｹﾝ");
 
         City city = new City();
-        city.setCityId(0);
+        city.setCityId(01);
         city.setCityName("湯沢市");
         city.setCityKana("ﾕｻﾞﾜｼ");
         city.setCityCode("05207");
         city.setPrefecture(prefecture);
 
         Post post = new Post();
-        post.setPostId(0);
+        post.setPostId(01);
         post.setPostCode("0120833");
         post.setUpdateShow(0);
         post.setMultiArea(0);
         post.setChangeReason(0);
 
         OldPost oldPost = new OldPost();
-        oldPost.setOldPostId(0);
+        oldPost.setOldPostId(01);
         oldPost.setOldPostCode("012");
 
         Area area = new Area();
-        area.setAreaId(0);
+        area.setAreaId(01);
         area.setAreaName("カツクイ沢山");
         area.setAreaKana("ｶｯｸｲｻﾜﾔﾏ");
         area.setCity(city);

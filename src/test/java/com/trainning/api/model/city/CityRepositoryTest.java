@@ -1,4 +1,4 @@
-package com.trainning.api.model.area;
+package com.trainning.api.model.city;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,27 +12,27 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * Test for {@link AreaRepository}
+ * Test for {@link CityRepository}
  */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @TestPropertySource("classpath:application.properties")
-public class AreaRepositoryTest {
+public class CityRepositoryTest {
     @Autowired
-    AreaRepository sut;
+    CityRepository sut;
 
     /**
-     * Test find area by post code
+     * Test find city by prefecture code
      */
     @Test
-    public void testFindByPostPostCode() {
+    public void testFindByPrefecturePrefectureCode() {
         // setup
-        Area area = AreaFixtures.createArea();
+        City city = CityFixtures.createCity();
         // exercise
-        List<Area> actual = sut.findByPostPostCode(area.getPost().getPostCode());
+        List<City> actual = sut.findByPrefecturePrefectureCode(city.getPrefecture().getPrefectureCode());
         // verify
         assertThat(actual.size()).isEqualTo(1);
-        Area areaActual = actual.get(0);
-        assertThat(areaActual.getPost().getPostCode()).isEqualTo(area.getPost().getPostCode());
+        City cityActual = actual.get(0);
+        assertThat(cityActual.getPrefecture().getPrefectureCode()).isEqualTo(city.getPrefecture().getPrefectureCode());
     }
 }
